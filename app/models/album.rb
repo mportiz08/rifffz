@@ -8,5 +8,9 @@ module Rifffz
     
     validates :title, presence: true
     validates :title, uniqueness: { scope: [:artist_id, :year] }
+    
+    def url
+      "#{self.artist.url}/#{self.slug}"
+    end
   end
 end

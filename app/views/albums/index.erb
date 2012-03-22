@@ -1,0 +1,34 @@
+<div id="library">
+  <div class="top-bar">
+    <div class="container">
+      <div class="row">
+        <div class="span1"></div>
+        <div class="span14 controls">
+          <ul class="unstyled">
+            <li>
+              <a href="#import-album-modal" data-toggle="modal" class="import-album sprite-icons-Add"></a>
+            </li>
+            <li>
+              <a href="#" class="sprite-icons-Search"></a>
+            </li>
+          </ul>
+        </div>
+        <div class="span1"></div>
+      </div>
+    </div>
+  </div>
+  <div class="album-listing container">
+    <%= erb :"shared/import_modal" %>
+    <div class="row">
+      <div class="span16">
+        <ul class="media-grid">
+          <% @albums.each do |album| %>
+            <li data-artist="<%= album.artist.name %>" data-album="<%= album.title %>">
+              <a href="<%= album.url %>", style="background: url(\"<%= album.cover %>\");"></a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

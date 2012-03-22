@@ -12,7 +12,8 @@ module Rifffz
     end
     
     get '/' do
-      'hello, world'
+      @albums = Album.all
+      erb :"albums/index"
     end
   end
 end

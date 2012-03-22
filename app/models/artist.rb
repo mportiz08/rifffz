@@ -7,5 +7,9 @@ module Rifffz
     
     validates :name, presence: true
     validates :name, uniqueness: true
+    
+    def url
+      "/#{self.slug}"
+    end
   end
 end
