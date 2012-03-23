@@ -5,4 +5,4 @@ initControls = ->
   controls = new app.Controls(artist, album, songs)
 
 $ ->
-  initControls()
+  initControls() if $('.album-info').length > 0

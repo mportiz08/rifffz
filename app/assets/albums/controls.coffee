@@ -79,7 +79,7 @@ class app.Controls
 
   changeTrack: (trackNo) ->
     @updateNowPlaying trackNo
-    $('audio').attr 'src', "/api/audio/#{util.slugify @artist}/#{util.slugify @album}/#{util.slugify @songs[trackNo]}"
+    $('audio').attr 'src', "/#{app.Util.slugify @artist}/#{app.Util.slugify @album}/#{app.Util.slugify @songs[trackNo]}/audio"
     @togglePlay()
     @updateProgress()
   

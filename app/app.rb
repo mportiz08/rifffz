@@ -26,10 +26,19 @@ module Rifffz
       send_file album.cover
     end
     
+    get '/:artist/:album/:song/audio' do
+      song = find_song(params)
+      send_file song.audio
+    end
+    
     private
     
     def find_album(params)
       Artist.find_by_slug(params[:artist]).albums.find_by_slug(params[:album])
+    end
+    
+    def find_song(params)
+      find_album(params).songs.find_by_slug(params[:song])
     end
   end
 end
