@@ -1,6 +1,4 @@
-util = require 'util'
-
-class Controls
+class app.Controls
   constructor: (@artist, @album, @songs) ->    
     @playPauseEl  = $('.play-pause')
     @prevTrackEl  = $('.prev-track')
@@ -91,5 +89,3 @@ class Controls
     $('.now-playing').removeClass 'now-playing'
     $(trackEl).addClass 'now-playing'
     $(trackEl).html "<span class=\"label success\">now playing</span> #{trackEl.html()}"
-
-module.exports = Controls
