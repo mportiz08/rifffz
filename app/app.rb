@@ -16,15 +16,20 @@ module Rifffz
       erb :"albums/index"
     end
     
+    get '/:artist/:album' do
+      @album = find_album(params)
+      erb :"albums/show"
+    end
+    
     get '/:artist/:album/cover' do
-      album = find_album(params[:artist], params[:album])
+      album = find_album(params)
       send_file album.cover
     end
     
     private
     
-    def find_album(artist_slug, album_slug)
-      Artist.find_by_slug(artist_slug).albums.find_by_slug(album_slug)
+    def find_album(params)
+      Artist.find_by_slug(params[:artist]).albums.find_by_slug(params[:album])
     end
   end
 end

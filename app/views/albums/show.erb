@@ -1,0 +1,70 @@
+<div id="player">
+  <%= erb :"shared/import_modal" %>
+  <div class="top-bar">
+    <div class="container">
+      <div class="row">
+        <div class="span3 controls">
+          <ul class="unstyled">
+            <li>
+              <a href="#" class="prev-track sprite-icons-Back"></a>
+            </li>
+            <li>
+              <a href="#" class="play-pause sprite-icons-Play"></a>
+            </li>
+            <li>
+              <a href="#" class="next-track sprite-icons-Next"></a>
+            </li>
+          </ul>
+        </div>
+        <div class="span3 controls">
+          <ul class="unstyled">
+            <li>
+              <a href="/" class="sprite-icons-Home"></a>
+            </li>
+            <li>
+              <a href="#import-album-modal" data-toggle="modal" class="import-album sprite-icons-Add"></a>
+            </li>
+            <li>
+              <a href="#" class="sprite-icons-Search"></a>
+            </li>
+          </ul>
+        </div>
+        <div class="span1">
+          <div class="time-passed">0:00</div>
+        </div>
+        <div class="span7 progress">
+          <div class="progress-bar">
+            <span style="width: 0%;"></span>
+          </div>
+        </div>
+        <div class="span2">
+          <div class="time-total">0:00</div>
+        </div>
+        <audio>
+          <source src="" type="audio/mpeg" />
+        </audio>
+      </div>
+    </div>
+  </div>
+  <div id="main" class="container">
+    <div class="row">
+      <div class="album-cover-view span8">
+        <div class="album-cover" style="background-image: url('<%= @album.cover_url %>'); background-size: contain;">
+          <div class="album-cover-overlay"></div>
+        </div>
+      </div>
+      <div class="album-info span8">
+        <h1 class="album-name"><%= @album.title %></h1>
+        <small class="album-year"><%= @album.year %></small>
+        <h2 class="artist-name"><%= @album.artist.name %></h2>
+        <ul class="album-song-list unstyled">
+          <% @album.songs.each do |song| %>
+            <li>
+              <a href="#"><%= song.title %></a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
