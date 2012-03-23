@@ -24,7 +24,7 @@
         <ul class="media-grid">
           <% @albums.each do |album| %>
             <li data-artist="<%= album.artist.name %>" data-album="<%= album.title %>">
-              <a href="<%= album.url %>", style="background: url(\"<%= album.cover %>\");"></a>
+              <a href="<%= album.url %>" style="background: url('<%= album.cover_url %>');"></a>
             </li>
           <% end %>
         </ul>

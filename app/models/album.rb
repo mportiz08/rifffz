@@ -12,5 +12,9 @@ module Rifffz
     def url
       "#{self.artist.url}/#{self.slug}"
     end
+    
+    def cover_url
+      "#{self.url}/cover"
+    end
   end
 end
