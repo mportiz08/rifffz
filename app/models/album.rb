@@ -3,7 +3,7 @@ module Rifffz
     include Sluggable
     
     sluggable  :title
-    has_many   :songs
+    has_many   :songs, dependent: :destroy
     belongs_to :artist
     
     validates :title, presence: true
