@@ -2,6 +2,6 @@ $ ->
   $('#library .media-grid a').mouseenter ->
     artist = $(@).parent().attr 'data-artist'
     album  = $(@).parent().attr 'data-album'
-    $(@).append "<div class=\"hover\">#{album}<br /><br /><small>#{artist}</small></div>"
+    $('#library').after "<div id=\"selected-album\"><h1>#{album} <small>#{artist}</small></h1></div>"
   $('#library .media-grid a').mouseleave ->
-    $(@).find('.hover').remove()
+    $('#selected-album').remove()
