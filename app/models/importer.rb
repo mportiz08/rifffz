@@ -1,3 +1,5 @@
+require 'taglib2'
+
 module Rifffz
   class Importer
     def initialize(path)
@@ -27,8 +29,35 @@ module Rifffz
     end
     
     def import_song(file)
-      return unless Importer.supports?(file)
-      puts "importing #{File.basename(file)}"
+      if Song.find_by_audio(file) || !Importer.supports?(file)
+        return
+      end
+      
+      song_info = TagLib2::File.new(file)
+      song = Song.create(
+        audio:   file,
+        title:   song_info.title,
+        track:   song_info.track,
+        bitrate: song_info.bitrate
+      )
+      
+      artist = Artist.find_by_name(song_info.artist)
+      artist = Artist.create(name: song_info.artist) if artist.nil?
+      
+      album = artist.albums.where(title: song_info.album, year: song_info.year).first
+      if album.nil?
+        album = Album.create(
+          title: song_info.album,
+          year:  song_info.year
+        )
+        album.genre = song_info.genre
+        album.cover = song_info.image(0).data if song_info.imageCount > 0
+        album.artist = artist
+        album.save 
+      end
+      
+      song.album = album
+      song.save
     end
   end
 end

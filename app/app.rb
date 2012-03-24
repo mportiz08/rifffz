@@ -23,7 +23,9 @@ module Rifffz
     
     get '/:artist/:album/cover' do
       album = find_album(params)
-      send_file album.cover
+      #send_file album.cover
+      content_type 'application/octet-stream'
+      album.cover
     end
     
     get '/:artist/:album/:song/audio' do
