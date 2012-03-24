@@ -24,3 +24,10 @@ namespace :db do
     Rifffz::Artist.destroy_all
   end
 end
+
+desc "Imports the albums in the library/ folder."
+task :import do
+  print "Importing..."
+  Rifffz::Importer.new('library').import
+  print "done.\n"
+end

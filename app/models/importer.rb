@@ -9,7 +9,9 @@ module Rifffz
     end
     
     def import
+      @logger.info 'Importing started.'
       import_path(@path) if File.directory?(@path)
+      @logger.info 'Importing finished.'
     end
     
     def self.supports?(file)
@@ -35,7 +37,7 @@ module Rifffz
         return
       end
       
-      @logger.info "Importing #{file}"
+      @logger.info "Importing #{file}..."
       
       song_info = TagLib2::File.new(file)
       song = Song.create(
