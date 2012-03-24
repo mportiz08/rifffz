@@ -7,7 +7,7 @@ module Rifffz
     belongs_to :artist
     
     validates :title, presence: true
-    validates :title, uniqueness: { scope: [:artist_id, :year] }
+    validates :title, uniqueness: { scope: :artist_id }
     
     def url
       "#{self.artist.url}/#{self.slug}"

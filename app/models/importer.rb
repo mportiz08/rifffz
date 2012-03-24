@@ -1,9 +1,11 @@
+require 'logger'
 require 'taglib2'
 
 module Rifffz
   class Importer
     def initialize(path)
-      @path = File.expand_path(path)
+      @logger = Logger.new(File.join('log', 'importer.log'))
+      @path   = File.expand_path(path)
     end
     
     def import
@@ -33,6 +35,8 @@ module Rifffz
         return
       end
       
+      @logger.info "Importing #{file}"
+      
       song_info = TagLib2::File.new(file)
       song = Song.create(
         audio:   file,
@@ -44,7 +48,7 @@ module Rifffz
       artist = Artist.find_by_name(song_info.artist)
       artist = Artist.create(name: song_info.artist) if artist.nil?
       
-      album = artist.albums.where(title: song_info.album, year: song_info.year).first
+      album = artist.albums.where(title: song_info.album).first
       if album.nil?
         album = Album.create(
           title: song_info.album,
