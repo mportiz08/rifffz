@@ -1,5 +1,5 @@
 setTitle = (artist, album) ->
-  $('title').text "#{album} | #{artist}"
+  $('title').text "♪ #{album} | #{artist}"
 
 initControls = (artist, album, songs) ->
   controls = new app.Controls(artist, album, songs)
