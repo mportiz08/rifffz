@@ -1,9 +1,14 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require 'active_record'
 require_relative 'models'
 
 module Rifffz
   class App < Sinatra::Base
+    enable :sessions
+    
+    register Sinatra::Flash
+    
     configure do
       ActiveRecord::Base.establish_connection(
         'adapter'   => 'sqlite3',
@@ -30,6 +35,12 @@ module Rifffz
     get '/:artist/:album/:song/audio' do
       song = find_song(params)
       send_file song.audio
+    end
+    
+    post '/albums/create' do
+      Importer.new(params['album-path']).import
+      flash[:notice] = "All of the albums found in <strong>#{params['album-path']}</strong> were successfully imported."
+      redirect '/'
     end
     
     private

@@ -1,14 +1,13 @@
 <div id="import-album-modal" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
-    <h3>Import Album</h3>
+    <h3>Import Album(s)</h3>
   </div>
   <div class="modal-body">
-    <form>
+    <form action="/albums/create" method="POST">
       <fieldset>
-        <legend>album folder location</legend>
         <div class="clearfix">
-          <label for="album-path">(absolute path)</label>
+          <label for="album-path">folder</label>
           <div class="input">
             <input class="album-path span5" id="album-path" name="album-path" size="30" type="text" />
           </div>

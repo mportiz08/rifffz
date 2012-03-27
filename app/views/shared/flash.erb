@@ -1,0 +1,8 @@
+<% if flash[:notice] %>
+  <div class="row">
+    <div class="alert alert-block alert-success">
+      <a class="close" href="#" data-dismiss="alert">×</a>
+      <p><%= flash[:notice] %></p>
+    </div>
+  </div>
+<% end %>

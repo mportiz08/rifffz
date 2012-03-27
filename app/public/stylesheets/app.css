@@ -250,6 +250,10 @@ a, a:visited, a:hover, a:active {
   text-align: right;
 }
 
+.alert-success a {
+  color: #468847;
+}
+
 .sprite-icons-Wikipedia,
 .sprite-icons-Wifi,
 .sprite-icons-Waterdrop,
