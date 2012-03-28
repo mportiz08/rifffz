@@ -17,9 +17,6 @@ class app.Controls
     @prevTrackEl.click @prevTrack
     @nextTrackEl.click @nextTrack
     @songListEl.on 'click', 'li a', @clickTrack
-    
-    @changeTrack 0
-    @togglePlay()
 
   initDuration: =>
     duration = parseInt(@audio.duration, 10)
@@ -49,10 +46,18 @@ class app.Controls
     if @audio.paused
       @audio.play()
       @setPauseIcon()
+      @sendNotification()
     else
       @audio.pause()
       @setPlayIcon()
     false
+  
+  sendNotification: ->
+    song = $('.now-playing').attr('data-song-slug')
+    $.post '/songs/play',
+      artist: app.Util.slugify(@artist),
+      album: app.Util.slugify(@album),
+      song: song,
 
   setPauseIcon: ->
     @playPauseEl.removeClass 'sprite-icons-Play'

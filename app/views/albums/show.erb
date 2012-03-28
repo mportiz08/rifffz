@@ -41,7 +41,7 @@
           <div class="time-total">0:00</div>
         </div>
         <audio>
-          <source src="" type="audio/mpeg" />
+          <source src="<%= @album.songs.first.audio_url %>" type="audio/mpeg" />
         </audio>
       </div>
     </div>
@@ -59,9 +59,16 @@
         <h2 class="artist-name"><%= @album.artist.name %></h2>
         <ul class="album-song-list unstyled">
           <% @album.songs.each do |song| %>
-            <li>
-              <a href="#"><%= song.title %></a>
-            </li>
+              <% if song == @album.songs.first %>
+                <li data-song-slug="<%= song.slug %>" class="now-playing">
+                  <span class="label success">now playing</span>
+                  <a href="#"><%= song.title %></a>
+                </li>
+              <% else %>
+                <li data-song-slug="<%= song.slug %>">
+                  <a href="#"><%= song.title %></a>
+                </li>
+              <% end %>
           <% end %>
         </ul>
       </div>

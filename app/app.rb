@@ -37,6 +37,11 @@ module Rifffz
       send_file song.audio
     end
     
+    post '/songs/play' do
+      song = find_song(params)
+      song.notify_growl
+    end
+    
     post '/albums/create' do
       Importer.new(params['album-path']).import
       flash[:notice] = "All of the albums found in <strong>#{params['album-path']}</strong> were successfully imported."

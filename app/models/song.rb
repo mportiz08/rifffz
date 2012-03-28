@@ -14,5 +14,13 @@ module Rifffz
        notification.attach_image(self.album.cover)
        notification.send
     end
+    
+    def url
+      "#{self.album.url}/#{self.slug}"
+    end
+    
+    def audio_url
+      "#{self.url}/audio"
+    end
   end
 end
