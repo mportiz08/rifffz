@@ -17,7 +17,7 @@ module Rifffz
     end
     
     get '/' do
-      @albums = Album.all
+      @albums = Album.library
       erb :"albums/index"
     end
     

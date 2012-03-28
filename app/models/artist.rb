@@ -3,7 +3,7 @@ module Rifffz
     include Sluggable
     
     sluggable :name
-    has_many  :albums, dependent: :destroy
+    has_many  :albums, dependent: :destroy, order: 'year'
     
     validates :name, presence: true
     validates :name, uniqueness: true
