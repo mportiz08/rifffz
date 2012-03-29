@@ -28,8 +28,12 @@ module Rifffz
     
     get '/:artist/:album/cover' do
       album = find_album(params)
-      content_type 'application/octet-stream'
-      album.cover
+      if album.cover.nil?
+        send_file File.expand_path(File.join('app', 'public', 'images', 'default_cover.png'))
+      else
+        content_type 'application/octet-stream'
+        album.cover
+      end
     end
     
     get '/:artist/:album/:song/audio' do
