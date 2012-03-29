@@ -2,6 +2,8 @@ require 'tempfile'
 
 module Rifffz
   class GrowlNotification
+    @@growlnotify_installed = system('which growlnotify > /dev/null')
+    
     def initialize(title, msg)
       @title = title
       @msg   = msg
@@ -13,21 +15,14 @@ module Rifffz
     end
     
     def send
-       return unless growlnotify_installed?
-       
-       begin
-         `growlnotify -n "rifffz" --image "#{@img.path}" -t "#{@title}" -m "#{@msg}" --wait`
-       ensure
-         @img.unlink
-         @img.close!
-       end
+       return unless can_notify_growl?
+       `growlnotify -n "rifffz" --image "#{@img.path}" -t "#{@title}" -m "#{@msg}"`
     end
     
     private
     
-    def growlnotify_installed?
-      `which growlnotify`
-      $?.success?
+    def can_notify_growl?
+      @@growlnotify_installed
     end
   end
 end
