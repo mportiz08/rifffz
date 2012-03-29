@@ -9,7 +9,7 @@
         <div class="clearfix">
           <label for="album-path">folder</label>
           <div class="input">
-            <input class="album-path span5" id="album-path" name="album-path" size="30" type="text" />
+            <input class="album-path span5" id="album-path" name="album-path" size="30" type="text" data-source='<%= @dirs || [] %>' data-provide="typeahead" />
           </div>
         </div>
       </fieldset>

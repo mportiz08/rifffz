@@ -17,6 +17,7 @@ module Rifffz
     end
     
     get '/' do
+      @dirs = autocomplete_dirs
       @albums = Album.library
       erb :"albums/index"
     end
@@ -60,6 +61,11 @@ module Rifffz
     
     def find_song(params)
       find_album(params).songs.find_by_slug(params[:song])
+    end
+    
+    def autocomplete_dirs
+      Dir.glob('library/*').select { |f| File.directory?(f) } +
+      Dir.glob('library/*/**').select { |f| File.directory?(f) }
     end
   end
 end
