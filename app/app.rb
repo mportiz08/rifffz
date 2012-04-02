@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'sinatra/base'
 require 'sinatra/flash'
 require 'active_record'
