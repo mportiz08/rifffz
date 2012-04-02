@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Rifffz
   class Album < ActiveRecord::Base
     include Sluggable

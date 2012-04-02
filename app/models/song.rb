@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Rifffz
   class Song < ActiveRecord::Base
     include Sluggable

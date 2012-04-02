@@ -5,6 +5,8 @@ require 'sinatra/flash'
 require 'active_record'
 require_relative 'models'
 
+Encoding.default_external = Encoding::UTF_8
+
 module Rifffz
   class App < Sinatra::Base
     enable :sessions
@@ -14,7 +16,9 @@ module Rifffz
     configure do
       ActiveRecord::Base.establish_connection(
         'adapter'   => 'sqlite3',
-        'database'  => File.join(File.dirname(__FILE__), '..', 'db', 'library.db')
+        'database'  => File.join(File.dirname(__FILE__), '..', 'db', 'library.db'),
+        'encoding'  => 'utf8',
+        'charset'   => 'utf8'
       )
     end
     

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Rifffz
   class Artist < ActiveRecord::Base
     include Sluggable

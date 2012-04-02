@@ -11,7 +11,7 @@ module Rifffz
     
     def attach_image(img_data)
       @img = Tempfile.new(@title)
-      @img.write(img_data)
+      @img.write(img_data.force_encoding('ASCII-8BIT'))
     end
     
     def send
