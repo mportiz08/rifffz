@@ -26,6 +26,8 @@ GEM
     i18n (0.6.0)
     multi_json (1.1.0)
     rack (1.4.1)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-protection (1.2.0)
       rack
     ruby-taglib2 (1.02)
@@ -57,6 +59,7 @@ DEPENDENCIES
   activerecord
   coffee-script
   rack
+  rack-cache
   ruby-taglib2
   sinatra
   sinatra-activerecord

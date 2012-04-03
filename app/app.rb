@@ -3,6 +3,7 @@
 require 'sinatra/base'
 require 'sinatra/flash'
 require 'active_record'
+require 'rack/cache'
 require_relative 'models'
 
 Encoding.default_external = Encoding::UTF_8
@@ -10,6 +11,8 @@ Encoding.default_external = Encoding::UTF_8
 module Rifffz
   class App < Sinatra::Base
     enable :sessions
+    
+    use Rack::Cache
     
     register Sinatra::Flash
     
@@ -25,6 +28,7 @@ module Rifffz
     get '/' do
       @dirs = autocomplete_dirs
       @albums = Album.library
+      last_modified Album.latest_update
       erb :"albums/index"
     end
     
@@ -38,6 +42,7 @@ module Rifffz
       if album.cover.nil?
         send_file File.expand_path(File.join('app', 'public', 'images', 'default_cover.png'))
       else
+        last_modified album.updated_at
         content_type 'application/octet-stream'
         album.cover
       end

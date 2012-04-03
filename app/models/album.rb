@@ -15,6 +15,10 @@ module Rifffz
       self.all.sort_by { |a| [a.artist.name.gsub(/^(a\s|an\s|the\s)/i, ''), a.year] }
     end
     
+    def self.latest_update
+      self.select('updated_at').order('updated_at').last.updated_at
+    end
+    
     def url
       "#{self.artist.url}/#{self.slug}"
     end
