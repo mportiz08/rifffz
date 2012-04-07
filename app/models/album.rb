@@ -1,8 +1,12 @@
 # encoding: utf-8
 
+require 'rmagick'
+
 module Rifffz
   class Album < ActiveRecord::Base
     include Sluggable
+    
+    before_save :make_thumbnail
     
     sluggable  :title
     has_many   :songs, dependent: :destroy, order: 'track'
@@ -25,6 +29,18 @@ module Rifffz
     
     def cover_url
       "#{self.url}/cover"
+    end
+    
+    def make_thumbnail
+      return if self.cover.nil?
+      
+      path = File.expand_path(File.join('app', 'public', 'images', 'albums', 'thumbnails', "#{self.id}.thumb"))
+      File.open(path, 'w') { |f| f.write(self.cover.force_encoding('ASCII-8BIT')) }
+      Magick::Image.read(path).first.scale(210, 210).write(path)
+    end
+    
+    def thumbnail
+      self.cover.nil? ? "/images/default_cover_thumbnail.png" : "/images/albums/thumbnails/#{self.id}.thumb"
     end
   end
 end
