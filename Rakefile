@@ -31,3 +31,10 @@ task :import do
   Rifffz::Importer.new('library').import
   print "done.\n"
 end
+
+namespace :cache do
+  desc 'Invalidates page caches associated with any albums.'
+  task :invalidate do
+    Rifffz::Album.all.each { |a| a.touch }
+  end
+end
