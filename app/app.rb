@@ -28,18 +28,20 @@ module Rifffz
     get '/' do
       @dirs = autocomplete_dirs
       @albums = Album.library
-      last_modified Album.latest_update
+      #last_modified Album.latest_update
       erb :"albums/index"
     end
     
     get '/:artist' do
       @dirs = autocomplete_dirs
       @albums = find_artist(params).albums
+      last_modified @albums.select('updated_at').order('updated_at').last.updated_at
       erb :"albums/index"
     end
     
     get '/:artist/:album' do
       @album = find_album(params)
+      last_modified @album.updated_at
       erb :"albums/show"
     end
     
