@@ -51,6 +51,7 @@
       </div>
       <div class="album-info span8">
         <h1 class="album-name"><%= @album.title %></h1>
+        <% if @album.new? %><span class="label important">new</span><% end %>
         <small class="album-year"><%= @album.year %></small>
         <h2 class="artist-name"><%= @album.artist.name %></h2>
         <ul class="album-song-list unstyled">

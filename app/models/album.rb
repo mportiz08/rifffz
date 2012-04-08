@@ -42,5 +42,9 @@ module Rifffz
     def thumbnail
       self.cover.nil? ? "/images/default_cover_thumbnail.png" : "/images/albums/thumbnails/#{self.id}.thumb"
     end
+    
+    def new?
+      self.year == Time.now.year
+    end
   end
 end
