@@ -32,6 +32,12 @@ module Rifffz
       erb :"albums/index"
     end
     
+    get '/:artist' do
+      @dirs = autocomplete_dirs
+      @albums = find_artist(params).albums
+      erb :"albums/index"
+    end
+    
     get '/:artist/:album' do
       @album = find_album(params)
       erb :"albums/show"
@@ -66,8 +72,12 @@ module Rifffz
     
     private
     
+    def find_artist(params)
+      Artist.find_by_slug(params[:artist])
+    end
+    
     def find_album(params)
-      Artist.find_by_slug(params[:artist]).albums.find_by_slug(params[:album])
+      find_artist(params).albums.find_by_slug(params[:album])
     end
     
     def find_song(params)
