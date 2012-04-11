@@ -4,19 +4,15 @@ module Rifffz
   class GrowlNotification
     @@growlnotify_installed = system('which growlnotify > /dev/null')
     
-    def initialize(title, msg)
+    def initialize(title, msg, img)
       @title = title
       @msg   = msg
-    end
-    
-    def attach_image(img_data)
-      @img = Tempfile.new(@title)
-      @img.write(img_data.force_encoding('ASCII-8BIT'))
+      @img   = img
     end
     
     def send
        return unless can_notify_growl?
-       `growlnotify -n "rifffz" --image "#{@img.path}" -t "#{@title}" -m "#{@msg}"`
+       `growlnotify -n "rifffz" --image "#{@img}" -t "#{@title}" -m "#{@msg}"`
     end
     
     private

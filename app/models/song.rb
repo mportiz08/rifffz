@@ -12,9 +12,8 @@ module Rifffz
     
     def notify_growl
        msg = "#{self.album.title}\n#{self.album.artist.name}"
-       notification = GrowlNotification.new(self.title, msg)
-       notification.attach_image(self.album.cover)
-       notification.send
+       img = File.expand_path(File.join('app', 'public', 'images', 'albums', 'thumbnails', "#{self.album.id}.thumb"))
+       GrowlNotification.new(self.title, msg, img).send
     end
     
     def url
