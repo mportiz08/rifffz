@@ -16,6 +16,7 @@ class app.Controls
     @playPauseEl.click @togglePlay
     @prevTrackEl.click @prevTrack
     @nextTrackEl.click @nextTrack
+    $('.progress-bar a').click @seek
     @songListEl.on 'click', 'li a', @clickTrack
 
   initDuration: =>
@@ -103,3 +104,10 @@ class app.Controls
     $('.now-playing').removeClass 'now-playing'
     $(trackEl).addClass 'now-playing'
     $(trackEl).html "<span class=\"label success\">now playing</span> #{trackEl.html()}"
+  
+  seek: (event) =>
+    el = $('.progress-bar')
+    x = event.pageX - el.offset().left
+    pct = x / el.width()
+    duration = parseInt(@audio.duration, 10)
+    @audio.currentTime = pct * duration
