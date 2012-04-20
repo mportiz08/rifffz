@@ -79,8 +79,17 @@ class app.Controls
   
   nextTrack: (event) =>
     trackNo = $('.now-playing').prevAll().length + 1
-    @changeTrack trackNo unless trackNo > (@songs.length - 1)
+    if trackNo > (@songs.length - 1)
+      @albumOver()
+    else
+      @changeTrack trackNo
     false
+  
+  albumOver: ->
+    @setPlayIcon()
+    $('.progress-bar span').css
+      width: '0%'
+    @timePassedEl.text '0:00'
 
   changeTrack: (trackNo) ->
     @updateNowPlaying trackNo
