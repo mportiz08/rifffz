@@ -10,7 +10,7 @@ end
 namespace :db do
   desc "Show the database schema."
   task :schema do
-    [Rifffz::Artist, Rifffz::Album, Rifffz::Song].each do |model|
+    [Rifffz::Artist, Rifffz::Album, Rifffz::Song, Rifffz::Playlist, Rifffz::PlaylistItem].each do |model|
       puts model.name
       puts model.columns.map { |c| {c.name => c.sql_type} }
       puts ''
