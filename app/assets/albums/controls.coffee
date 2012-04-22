@@ -111,3 +111,4 @@ class app.Controls
     pct = x / el.width()
     duration = parseInt(@audio.duration, 10)
     @audio.currentTime = pct * duration
+    false
