@@ -32,6 +32,12 @@ module Rifffz
       erb :"albums/index"
     end
     
+    get '/stats' do
+      @stats = Stats.new
+      last_modified Album.latest_update
+      erb :"stats/index"
+    end
+    
     get '/:artist' do
       @dirs = autocomplete_dirs
       @albums = find_artist(params).albums
