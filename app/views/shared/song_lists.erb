@@ -25,9 +25,9 @@
     <div class="row">
       <div class="span16">
         <ul class="media-grid">
-          <% @albums.each do |album| %>
-            <li data-artist="<%= album.artist.name %>" data-album="<%= album.title %>">
-              <a href="<%= album.url %>" style="background: url('<%= album.thumbnail %>');"></a>
+          <% @song_lists.each do |list| %>
+            <li <%= list.respond_to?(:artist) ? "data-artist=\"#{list.artist.name}\" data-album=\"#{list.title}\"" : "data-playlist=\"#{list.title}\""%>>
+              <a href="<%= list.url %>" style="background: url('<%= list.thumbnail %>');"></a>
             </li>
           <% end %>
         </ul>

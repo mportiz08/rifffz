@@ -27,15 +27,22 @@ module Rifffz
     
     get '/' do
       @dirs = autocomplete_dirs
-      @albums = Album.library
+      #@albums = Album.library
+      @song_lists = Album.library
       #last_modified Album.latest_update
-      erb :"albums/index"
+      erb :"shared/song_lists"
     end
     
     get '/stats' do
       @stats = Stats.new
       last_modified Album.latest_update
       erb :"stats/index"
+    end
+    
+    get '/playlists' do
+      @dirs = autocomplete_dirs
+      @song_lists = Playlist.all
+      erb :"shared/song_lists"
     end
     
     get '/:artist' do

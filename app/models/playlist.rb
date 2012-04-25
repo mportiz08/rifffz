@@ -20,7 +20,7 @@ module Rifffz
     end
     
     def cover_url
-      "#{self.url}/cover"
+      "/images/default_cover.png"
     end
     
     def thumbnail
