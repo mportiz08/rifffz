@@ -1,0 +1,58 @@
+<div id="stats">
+  <div class="top-bar">
+    <div class="container">
+      <div class="row">
+        <div class="span8 controls">
+          <ul class="unstyled">
+            <li>
+              <a href="/" class="sprite-icons-Home"></a>
+            </li>
+          </ul>
+        </div>
+        <div class="span8 selected-album"></div>
+      </div>
+    </div>
+  </div>
+  <div id="main" class="container stats">
+    <div class="row">
+      <div class="span8 stat">
+        <h1><%= @stats.num_artists %></h1>
+      </div>
+      <div class="span8 desc">
+        <h1>artists</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8 stat">
+        <h1><%= @stats.num_albums %></h1>
+      </div>
+      <div class="span8 desc">
+        <h1>albums</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8 stat">
+        <h1><%= @stats.num_songs %></h1>
+      </div>
+      <div class="span8 desc">
+        <h1>songs</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8 stat">
+        <h1><%= @stats.num_genres %></h1>
+      </div>
+      <div class="span8 desc">
+        <h1>genres</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8 stat">
+        <h1>0</h1>
+      </div>
+      <div class="span8 desc">
+        <h1>playlists</h1>
+      </div>
+    </div>
+  </div>
+</div>

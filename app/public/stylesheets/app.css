@@ -260,6 +260,28 @@ h1, h2, h3, h4, h5, h6 {
   color: #468847;
 }
 
+.stats .row {
+  padding: 25px 0;
+}
+
+.stats .stat {
+  text-align: right;
+}
+
+.stats .stat h1 {
+  font-size: 72px;
+  /*font-weight: normal;*/
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75);
+}
+
+.stats .desc {
+  text-align: left;
+}
+
+.typeahead.dropdown-menu {
+  max-width: 600px;
+}
+
 .sprite-icons-Wikipedia,
 .sprite-icons-Wifi,
 .sprite-icons-Waterdrop,
