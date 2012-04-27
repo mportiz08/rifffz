@@ -47,9 +47,9 @@ module Rifffz
     
     get '/:artist' do
       @dirs = autocomplete_dirs
-      @albums = find_artist(params).albums
-      last_modified @albums.select('updated_at').order('updated_at').last.updated_at
-      erb :"albums/index"
+      @song_lists = find_artist(params).albums
+      last_modified @song_lists.select('updated_at').order('updated_at').last.updated_at
+      erb :"shared/song_lists"
     end
     
     get '/:artist/:album' do
