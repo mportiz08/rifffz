@@ -33,26 +33,26 @@ module Rifffz
       erb :"shared/song_lists"
     end
     
-    get '/stats' do
+    get '/stats/?' do
       @stats = Stats.new
       last_modified Album.latest_update
       erb :"stats/index"
     end
     
-    get '/playlists' do
+    get '/playlists/?' do
       @dirs = autocomplete_dirs
       @song_lists = Playlist.all
       erb :"shared/song_lists"
     end
     
-    get '/:artist' do
+    get '/:artist/?' do
       @dirs = autocomplete_dirs
       @song_lists = find_artist(params).albums
       last_modified @song_lists.select('updated_at').order('updated_at').last.updated_at
       erb :"shared/song_lists"
     end
     
-    get '/:artist/:album' do
+    get '/:artist/:album/?' do
       @album = find_album(params)
       last_modified @album.updated_at
       erb :"albums/show"
