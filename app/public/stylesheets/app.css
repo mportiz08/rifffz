@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-animation: inflate-cover-big 0.5s ease-out;
 }
 
-.album-info h1, .album-info h2, .album-info small, .album-song-list {
+.album-info h1, .album-info h2, .album-info > small, .album-song-list {
   -webkit-animation: slide-in-songs 0.5s ease-out;
 }
 
@@ -199,8 +199,13 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
 }
 
+.album-song-list li small {
+  color: #ccc;
+  font-size: 16px;
+  text-shadow: none;
+}
+
 .album-song-list .now-playing {
-  color: #fff;
   font-size: 20px;
   font-weight: bold;
   padding: 10px 0;

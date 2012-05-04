@@ -1,8 +1,10 @@
-setTitle = (artist, album) ->
-  $('title').text "♪ #{album} | #{artist}"
+setTitle = (name, artist) ->
+  title = name
+  title = "#{title} ♪ #{artist}" if artist?
+  $('title').text title
 
-initControls = (artist, album, songs) ->
-  window.controls = new app.Controls(artist, album, songs)
+initControls = (album, songs, artist) ->
+  window.controls = new app.Controls(album, songs, artist)
 
 togglePlayShortcut = (e) ->
   e.preventDefault()
@@ -26,9 +28,9 @@ setupKeyboardShortcuts = ->
 
 $ ->
   if $('.album-info').length > 0
-    artist = $('.album-info .artist-name').text()
+    artist = $('.album-info .artist-name').text() if $('.artist-name').length > 0
     album  = $('.album-info .album-name').text()
     songs = _.map $('.album-song-list a'), (s) -> $(s).text()
-    setTitle(artist, album)
-    initControls(artist, album, songs)
+    setTitle(album, artist)
+    initControls(album, songs, artist)
     setupKeyboardShortcuts()

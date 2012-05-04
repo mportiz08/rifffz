@@ -45,6 +45,17 @@ module Rifffz
       erb :"shared/song_lists"
     end
     
+    get '/playlists/:playlist/?' do
+      @song_list = find_playlist(params)
+      last_modified @song_list.updated_at
+      erb :"shared/song_list"
+    end
+    
+    get '/playlists/:playlist/:song/audio' do
+      song = find_playlist_song(params)
+      send_file song.audio
+    end
+    
     get '/:artist/?' do
       @dirs = autocomplete_dirs
       @song_lists = find_artist(params).albums
@@ -53,9 +64,9 @@ module Rifffz
     end
     
     get '/:artist/:album/?' do
-      @album = find_album(params)
-      last_modified @album.updated_at
-      erb :"albums/show"
+      @song_list = find_album(params)
+      last_modified @song_list.updated_at
+      erb :"shared/song_list"
     end
     
     get '/:artist/:album/cover' do
@@ -97,6 +108,14 @@ module Rifffz
     
     def find_song(params)
       find_album(params).songs.find_by_slug(params[:song])
+    end
+    
+    def find_playlist(params)
+      Playlist.find_by_slug(params[:playlist])
+    end
+    
+    def find_playlist_song(params)
+      find_playlist(params).songs.find_by_slug(params[:song])
     end
     
     def autocomplete_dirs

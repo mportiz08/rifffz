@@ -35,6 +35,6 @@ end
 namespace :cache do
   desc 'Invalidates page caches associated with any albums.'
   task :invalidate do
-    Rifffz::Album.all.each { |a| a.touch }
+    [Rifffz::Album, Rifffz::Playlist].each { |model| model.all.each { |a| a.touch } }
   end
 end
