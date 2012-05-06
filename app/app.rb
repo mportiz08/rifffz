@@ -45,6 +45,10 @@ module Rifffz
       erb :"shared/song_lists"
     end
     
+    get '/playlists/new?' do
+      erb :"playlists/new"
+    end
+    
     get '/playlists/:playlist/?' do
       @song_list = find_playlist(params)
       last_modified @song_list.updated_at
