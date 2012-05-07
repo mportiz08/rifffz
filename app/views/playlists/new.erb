@@ -1,3 +1,8 @@
+<form class="autocomplete">
+  <% @songs.each do |song| %>
+    <input type="hidden" value="<%= song %>" />
+  <% end %>
+</form>
 <div class="top-bar">
   <div class="container">
     <div class="row">
@@ -18,23 +23,23 @@
   </div>
   <div class="row">
     <div class="span8">
-      <form class="playlist-info">
+      <form class="playlist-info" action="/playlists/create" method="post">
         <fieldset>
           <div class="clearfix">
             <label class="span2" for="playlist-title">title</label>
             <div class="input">
-              <input class="span6" id="playlist-title" name="playlist-title" placeholder="your playlist title goes here" size="30" type="text" />
+              <input class="span8" id="playlist-title" name="playlist-title" placeholder="your playlist title goes here" size="30" type="text" />
             </div>
           </div>
           <div class="clearfix">
             <label class="span2" for="playlist-add-song"><a href="#" class="sprite-icons-Add">&nbsp;</a></label>
             <div class="input">
-              <input class="span6" id="playlist-add-song" name="playlist-add-song" placeholder="search for songs by name" size="30" type="text" data-provide="typeahead" />
+              <input class="span8" id="playlist-add-song" placeholder="search for songs by name" size="30" type="text" data-provide="typeahead" />
             </div>
           </div>
           <div class="clearfix">
             <div class="input">
-              <a id="playlist-add-song-btn" href="#" class="btn">add song</a>
+              <a id="playlist-add-song-btn" href="#add-song" class="btn">add song</a>
               <button class="btn primary">save playlist</button>
             </div>
           </div>
@@ -44,8 +49,8 @@
   </div>
   <hr />
   <div class="container playlist-contents">
-    <div class="row">
-      <div class="span16 playlist-empty">
+    <div class="row playlist-empty">
+      <div class="span16">
         <p>This playlist is empty right now. Add some songs to it!</p>
       </div>
     </div>

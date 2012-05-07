@@ -296,7 +296,7 @@ label {
 }
 
 #playlists-new.container {
-  padding-top: 65px;
+  padding-top: 45px;
 }
 
 #playlists-new hr {
@@ -305,7 +305,10 @@ label {
 }
 
 h1.title {
-  margin-bottom: 15px;
+  font-size: 36px;
+  padding-bottom: 15px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+  text-transform: lowercase;
 }
 
 form.playlist-title {
@@ -333,6 +336,14 @@ form.playlist-title {
 
 .playlist-contents {
   padding: 50px 0;
+}
+
+.playlist-item .playlist-item-info {
+  text-align: right;
+}
+
+.playlist-item .playlist-item-album img {
+  border: 2px solid #fff;
 }
 
 .playlist-empty {

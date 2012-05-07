@@ -4,6 +4,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require 'active_record'
 require 'rack/cache'
+require 'logger'
 require_relative 'models'
 
 Encoding.default_external = Encoding::UTF_8
@@ -11,6 +12,7 @@ Encoding.default_external = Encoding::UTF_8
 module Rifffz
   class App < Sinatra::Base
     enable :sessions
+    enable :logging
     
     use Rack::Cache
     
@@ -23,6 +25,16 @@ module Rifffz
         'encoding'  => 'utf8',
         'charset'   => 'utf8'
       )
+    end
+    
+    configure :development do
+      set :logger, Logger.new(File.join('log', 'development.log'), 'weekly')
+    end
+    
+    helpers do
+      def logger
+        settings.logger || Logger.new(STDOUT)
+      end
     end
     
     get '/' do
@@ -45,8 +57,21 @@ module Rifffz
       erb :"shared/song_lists"
     end
     
-    get '/playlists/new?' do
+    get '/playlists/new/?' do
+      @songs = autocomplete_songs
       erb :"playlists/new"
+    end
+    
+    post '/playlists/create/?' do
+      playlist = Playlist.new(title: params['playlist-title'])
+      params['playlist-songs'].each { |id| playlist.songs << Song.find(id) }
+      if playlist.save
+        flash[:notice] = 'Your playlist was created successfully.'
+        redirect '/playlists'
+      else
+        flash[:error] = 'Something broke.'
+        redirect '/'
+      end
     end
     
     get '/playlists/:playlist/?' do
@@ -82,6 +107,11 @@ module Rifffz
         content_type 'application/octet-stream'
         album.cover
       end
+    end
+    
+    get '/:artist/:album/:song.json' do
+      content_type :json
+      find_song(params).to_json
     end
     
     get '/:artist/:album/:song/audio' do
@@ -125,6 +155,10 @@ module Rifffz
     def autocomplete_dirs
       Dir.glob('library/*').select { |f| File.directory?(f) } +
       Dir.glob('library/*/**').select { |f| File.directory?(f) }
+    end
+    
+    def autocomplete_songs
+      Song.all.map { |s| "#{s.title} | #{s.album.title} | #{s.album.artist.name}"}
     end
   end
 end

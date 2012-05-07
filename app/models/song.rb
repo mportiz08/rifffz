@@ -25,5 +25,16 @@ module Rifffz
     def audio_url
       "#{self.url}/audio"
     end
+    
+    def as_json(options={})
+      super({
+        include: {
+          album: {
+            include: :artist,
+            methods: :thumbnail
+          }
+        }
+      })
+    end
   end
 end
