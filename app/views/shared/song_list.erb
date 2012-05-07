@@ -37,7 +37,7 @@
           <div class="time-total">0:00</div>
         </div>
         <audio>
-          <source src="<%= @album.songs.first.audio_url %>" type="audio/mpeg" />
+          <source src="<%= @song_list.songs.first.audio_url %>" type="audio/mpeg" />
         </audio>
       </div>
     </div>
@@ -45,25 +45,27 @@
   <div id="main" class="container">
     <div class="row">
       <div class="album-cover-view span8">
-        <div class="album-cover" style="background-image: url('<%= @album.cover_url %>'); background-size: contain;">
+        <div class="album-cover" style="background-image: url('<%= @song_list.cover_url %>'); background-size: contain;">
           <div class="album-cover-overlay"></div>
         </div>
       </div>
       <div class="album-info span8">
-        <h1 class="album-name"><%= @album.title %></h1>
-        <% if @album.new? %><span class="label important">new</span><% end %>
-        <small class="album-year"><%= @album.year %></small>
-        <h2 class="artist-name"><%= @album.artist.name %></h2>
+        <h1 class="album-name"><%= @song_list.title %></h1>
+        <% if @song_list.respond_to?(:new?) && @song_list.new? %><span class="label important">new</span><% end %>
+        <% if @song_list.respond_to?(:year) %><small class="album-year"><%= @song_list.year %></small><% end %>
+        <% if @song_list.respond_to?(:artist) %><h2 class="artist-name"><%= @song_list.artist.name %></h2><% end %>
         <ul class="album-song-list unstyled">
-          <% @album.songs.each do |song| %>
-              <% if song == @album.songs.first %>
+          <% @song_list.songs.each do |song| %>
+              <% if song == @song_list.songs.first %>
                 <li data-song-slug="<%= song.slug %>" class="now-playing">
                   <span class="label success">now playing</span>
                   <a href="#"><%= song.title %></a>
+                  <% unless @song_list.respond_to?(:artist) %><br /><small><%= song.album.artist.name %></small><% end %>
                 </li>
               <% else %>
                 <li data-song-slug="<%= song.slug %>">
                   <a href="#"><%= song.title %></a>
+                  <% unless @song_list.respond_to?(:artist) %><br /><small><%= song.album.artist.name %></small><% end %>
                 </li>
               <% end %>
           <% end %>
