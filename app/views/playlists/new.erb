@@ -1,0 +1,58 @@
+<form class="autocomplete">
+  <% @songs.each do |song| %>
+    <input type="hidden" value="<%= song %>" />
+  <% end %>
+</form>
+<div class="top-bar">
+  <div class="container">
+    <div class="row">
+      <div class="span8 controls">
+        <ul class="unstyled">
+          <li>
+            <a href="/" class="sprite-icons-Home"></a>
+          </li>
+        </ul>
+      </div>
+      <div class="span8 selected-album"></div>
+    </div>
+  </div>
+</div>
+<div id="playlists-new" class="container">
+  <div class="row">
+    <div class="span16"><h1 class="title">New Playlist</h1></div>
+  </div>
+  <div class="row">
+    <div class="span8">
+      <form class="playlist-info" action="/playlists/create" method="post">
+        <fieldset>
+          <div class="clearfix">
+            <label class="span2" for="playlist-title">title</label>
+            <div class="input">
+              <input class="span8" id="playlist-title" name="playlist-title" placeholder="your playlist title goes here" size="30" type="text" />
+            </div>
+          </div>
+          <div class="clearfix">
+            <label class="span2" for="playlist-add-song"><a href="#" class="sprite-icons-Add">&nbsp;</a></label>
+            <div class="input">
+              <input class="span8" id="playlist-add-song" placeholder="search for songs by name" size="30" type="text" data-provide="typeahead" />
+            </div>
+          </div>
+          <div class="clearfix">
+            <div class="input">
+              <a id="playlist-add-song-btn" href="#add-song" class="btn">add song</a>
+              <button class="btn primary">save playlist</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <hr />
+  <div class="container playlist-contents">
+    <div class="row playlist-empty">
+      <div class="span16">
+        <p>This playlist is empty right now. Add some songs to it!</p>
+      </div>
+    </div>
+  </div>
+</div>

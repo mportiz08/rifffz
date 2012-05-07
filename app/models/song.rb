@@ -6,6 +6,8 @@ module Rifffz
     
     sluggable  :title
     belongs_to :album
+    has_many   :playlist_items
+    has_many   :playlists, through: :playlist_items
     
     validates :title, presence: true
     validates :title, uniqueness: { scope: :album_id }
@@ -22,6 +24,17 @@ module Rifffz
     
     def audio_url
       "#{self.url}/audio"
+    end
+    
+    def as_json(options={})
+      super({
+        include: {
+          album: {
+            include: :artist,
+            methods: :thumbnail
+          }
+        }
+      })
     end
   end
 end

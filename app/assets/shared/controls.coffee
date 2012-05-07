@@ -1,5 +1,5 @@
 class app.Controls
-  constructor: (@artist, @album, @songs) ->    
+  constructor: (@album, @songs, @artist) ->    
     @playPauseEl  = $('.play-pause')
     @prevTrackEl  = $('.prev-track')
     @nextTrackEl  = $('.next-track')
@@ -94,7 +94,11 @@ class app.Controls
 
   changeTrack: (trackNo) ->
     @updateNowPlaying trackNo
-    $('audio').attr 'src', "/#{app.Util.slugify @artist}/#{app.Util.slugify @album}/#{app.Util.slugify @songs[trackNo]}/audio"
+    if @artist?
+      $('audio').attr 'src', "/#{app.Util.slugify @artist}/#{app.Util.slugify @album}/#{app.Util.slugify @songs[trackNo]}/audio"
+    else
+      # for playlists... (@album will be the name of theh playlist)
+      $('audio').attr 'src', "/playlists/#{app.Util.slugify @album}/#{app.Util.slugify @songs[trackNo]}/audio"
     @togglePlay()
     @updateProgress()
   
@@ -111,3 +115,4 @@ class app.Controls
     pct = x / el.width()
     duration = parseInt(@audio.duration, 10)
     @audio.currentTime = pct * duration
+    false

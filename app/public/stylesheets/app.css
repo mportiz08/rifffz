@@ -8,6 +8,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+label {
+  color: #fff;
+}
+
 #player a, #player a:visited, #player a:hover, #player a:active {
   color: #fff;
 }
@@ -45,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-animation: inflate-cover-big 0.5s ease-out;
 }
 
-.album-info h1, .album-info h2, .album-info small, .album-song-list {
+.album-info h1, .album-info h2, .album-info > small, .album-song-list {
   -webkit-animation: slide-in-songs 0.5s ease-out;
 }
 
@@ -59,6 +63,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .modal, .modal-body a, .modal a:visited, .modal a:hover, .modal a:active, .modal h1, .modal h2, .modal h3, .modal h4, .modal h5, .modal h6 {
   color: #333;
+}
+
+.modal label {
+  color: #404040;
 }
 
 .modal .btn.primary {
@@ -151,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
   background-size: contain;
   border: 2px solid #222;
   border-radius: 6px;
-  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.5);
   height: 450px;
   width: 450px;
 }
@@ -165,7 +173,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: right;
 }
 
-.album-info h1 {
+.album-info h1, h1.title {
   font-size: 36px;
   margin-bottom: 5px;
   text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75);
@@ -199,8 +207,13 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
 }
 
+.album-song-list li small {
+  color: #ccc;
+  font-size: 16px;
+  text-shadow: none;
+}
+
 .album-song-list .now-playing {
-  color: #fff;
   font-size: 20px;
   font-weight: bold;
   padding: 10px 0;
@@ -280,6 +293,61 @@ h1, h2, h3, h4, h5, h6 {
 
 .typeahead.dropdown-menu {
   max-width: 600px;
+}
+
+#playlists-new.container {
+  padding-top: 45px;
+}
+
+#playlists-new hr {
+  margin: 30px 50px;
+  opacity: 0.6;
+}
+
+h1.title {
+  font-size: 36px;
+  padding-bottom: 15px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+  text-transform: lowercase;
+}
+
+form.playlist-title {
+  margin-top: 25px;
+}
+
+.playlist-info label, .playlist-info input {
+  font-size: 22px;
+}
+
+.playlist-info label {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.playlist-info label a {
+  display: inline-block;
+}
+
+.playlist-info input {
+  color: #333;
+  height: 22px;
+  line-height: 22px;
+  text-shadow: none;
+}
+
+.playlist-contents {
+  padding: 50px 0;
+}
+
+.playlist-item .playlist-item-info {
+  text-align: right;
+}
+
+.playlist-item .playlist-item-album img {
+  border: 2px solid #fff;
+}
+
+.playlist-empty {
+  text-align: center;
 }
 
 .sprite-icons-Wikipedia,
