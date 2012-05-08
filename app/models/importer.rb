@@ -17,7 +17,7 @@ module Rifffz
     end
     
     def self.supports?(file)
-      ['.mp3'].include? File.extname(file)
+      ['.mp3', '.m4a'].include? File.extname(file)
     end
     
     private
