@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>rifffz by mportiz08</title>
+    <title>rifffz</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -25,15 +25,77 @@
         </ul>
       </header>
       <section>
+        <h1>hello, world</h1>
+        <p>This is what I've been working on for my senior project the last couple of quarters here at Cal Poly. If you aren't afraid of working with a command line and you get some free time, feel free to try it out.</p>
+        <p>&mdash;Marcus Ortiz</p>
+      </section>
+      <section>
         <h2>screenshots</h2>
 
-<h3>browsing library</h3>
+        <h3>library</h3>
 
-<p><a href="http://cl.ly/EZwn"><img src="http://f.cl.ly/items/1b0n2h1t1e191o333j2g/screen-01.png" alt="browsing library"></a></p>
+        <p><a href="http://mportiz08.github.com/rifffz/screenshots/hires/rifffz_screenshot-02.png"><img src="http://mportiz08.github.com/rifffz/screenshots/thumbnails/rifffz_screenshot-02.png" alt="browsing library"></a></p>
 
-<h3>listening to an album</h3>
+        <p><a href="http://mportiz08.github.com/rifffz/screenshots/hires/rifffz_screenshot-03.png"><img src="http://mportiz08.github.com/rifffz/screenshots/thumbnails/rifffz_screenshot-03.png" alt="library stats"></a></p>
 
-<p><a href="http://cl.ly/EZf4"><img src="http://cl.ly/EZf4/screen-02.png" alt="listening to an album"></a></p>
+        <h3>albums</h3>
+
+        <p><a href="http://mportiz08.github.com/rifffz/screenshots/hires/rifffz_screenshot-01.png"><img src="http://mportiz08.github.com/rifffz/screenshots/thumbnails/rifffz_screenshot-01.png" alt="listening to an album 1"></a></p>
+
+        <p><a href="http://mportiz08.github.com/rifffz/screenshots/hires/rifffz_screenshot-05.png"><img src="http://mportiz08.github.com/rifffz/screenshots/thumbnails/rifffz_screenshot-05.png" alt="listening to an album 2"></a></p>
+
+        <p><a href="http://mportiz08.github.com/rifffz/screenshots/hires/rifffz_screenshot-07.png"><img src="http://mportiz08.github.com/rifffz/screenshots/thumbnails/rifffz_screenshot-07.png" alt="listening to an album 3"></a></p>
+
+        <p><a href="http://mportiz08.github.com/rifffz/screenshots/hires/rifffz_screenshot-09.png"><img src="http://mportiz08.github.com/rifffz/screenshots/thumbnails/rifffz_screenshot-09.png" alt="listening to an album 4"></a></p>
+
+        <p><a href="http://mportiz08.github.com/rifffz/screenshots/hires/rifffz_screenshot-15.png"><img src="http://mportiz08.github.com/rifffz/screenshots/thumbnails/rifffz_screenshot-15.png" alt="listening to an album 5"></a></p>
+
+        <h3>playlists</h3>
+
+        <p><a href="http://mportiz08.github.com/rifffz/screenshots/hires/rifffz_screenshot-12.png"><img src="http://mportiz08.github.com/rifffz/screenshots/thumbnails/rifffz_screenshot-12.png" alt="creating a new playlist"></a></p>
+
+        <p><a href="http://mportiz08.github.com/rifffz/screenshots/hires/rifffz_screenshot-13.png"><img src="http://mportiz08.github.com/rifffz/screenshots/thumbnails/rifffz_screenshot-13.png" alt="adding songs to a playlist"></a></p>
+
+        <p><a href="http://mportiz08.github.com/rifffz/screenshots/hires/rifffz_screenshot-14.png"><img src="http://mportiz08.github.com/rifffz/screenshots/thumbnails/rifffz_screenshot-14.png" alt="listening to a playlist"></a></p>
+
+        <h2>installation</h2>
+
+        <h3>dependencies</h3>
+
+        <p>First, make sure you have <a href="http://www.ruby-lang.org/en/">ruby</a> installed on your system.</p>
+
+        <p>The only non-ruby based dependencies are <a href="http://www.sqlite.org/">sqlite</a> and <a href="http://developer.kde.org/%7Ewheeler/taglib.html">taglib</a>. If you have <a href="http://mxcl.github.com/homebrew/">homebrew</a> on your system, installing them is as easy as this:</p>
+
+        <pre><code>brew install sqlite<br />brew install taglib</code></pre>
+
+        <p>(You&#39;re on your own if not)</p>
+
+        <h3>rifffz</h3>
+
+        <p>clone the repo:</p>
+
+        <pre><code>cd wherever<br />git clone https://github.com/mportiz08/rifffz.git<br />cd rifffz</code></pre>
+
+        <p>if you don&#39;t have <a href="http://gembundler.com/">bundler</a> installed:</p>
+
+        <pre><code>gem install bundler</code></pre>
+
+        <p>install the dependencies:</p>
+
+        <pre><code>bundle install</code></pre>
+
+        <p>setup the database:</p>
+
+        <pre><code>touch db/library.db<br />rake db:migrate</code></pre>
+
+        <p>You should be good to go now (I think). To run the application, simply start the server and check it out on your web browser:</p>
+
+        <pre><code>thin start</code></pre>
+
+        <p>Another optional but suggested step is to symlink the path to where your mp3 files are stored, because that will give you some sweet autocompletion features that&#39;s helpful for importing albums.</p>
+
+        <pre><code>ln -s /path/to/music/folder library</code></pre>
+        
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/mportiz08">mportiz08</a></p>
